@@ -11,8 +11,8 @@ const register = async (req,res) =>{
         if (existingUser) return res.status(404).json({message:"User already exists"})
         if (password!==confirmPassword) return res.status(400).json({ message: "Password mis match"})
             const hashedPassword = await bcrypt.hash(password, 12);
-        await User.create({ email, password:hashedPassword, name: `${firstName} ${lastName}` });
-        const token =jwt.sign({ email: resourceLimits.email, id: resourceLimits._id}, 'test', { expiresIn: "1h"});
+        const result = await User.create({ email, password:hashedPassword, name: `${firstName} ${lastName}` });
+        const token =jwt.sign({ email: result.email, id: result._id}, 'test', { expiresIn: "1h"});
         res.status(200).json({message: "User created!", result, token})
     } catch (error) {
         res.status(500).json({message:error.message})

@@ -9,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 
+// middleware for cors
 const corsOptions = {
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -26,6 +27,6 @@ app.use('/user', userRoutes);
 
 const PORT = process.env.PORT
 app.listen(PORT,()=>{
-    console.log('server is running on port $[PORT]')
+    console.log(`server is running on port ${PORT}`)
 })
 connectDB();

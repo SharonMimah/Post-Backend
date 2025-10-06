@@ -9,5 +9,7 @@ router.put('/posts/:id', auth, updatePost);
  
 router.delete('/posts/:id', auth, deletePost);
 
-//router.get("/", (req, res)
+router.get("/", (req, res) => {
+    res.send("Welcome to posts api")
+});
 module.exports = router;
